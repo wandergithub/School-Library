@@ -1,18 +1,23 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# School Library
 
-> Description the project.
+> Tool to record what books are in the library and who borrows them. The app allows user to:
+ - Add new students or teachers.
+ - Add new books.
+ - Save records of who borrowed a given book and when.
 
 
 ## Built With
 
 - Ruby
 
+
 <!-- ## Live Demo (if available)
 
 [Live Demo Link](https://livedemo.com)
  -->
+
 
 ## Getting Started
 
