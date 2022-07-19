@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
+
 
 # School Library
 
@@ -13,47 +13,21 @@
 - Ruby
 
 
-<!-- ## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
- -->
-
-
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
 ### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
+```shell
+# Clone the repo
+git clone https://github.com/wandergithub/School-Library
+# Change directory
+cd School-Library
+```
 
 
+## Author
 
-## Authors
+- GitHub: [@wandergithub](https://github.com/wandergithub)
+- Twitter: [@wanderklk1](https://twitter.com/wanderklk1)
+- LinkedIn: [Wander A. Gonzalez](https://www.linkedin.com/in/wander-a-gonzalez-53127b205/)
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
@@ -67,9 +41,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- ![](https://img.shields.io/badge/Microverse-blueviolet)
 
 ## 📝 License
 
