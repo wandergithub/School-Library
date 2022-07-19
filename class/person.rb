@@ -4,7 +4,7 @@ class Person
   attr_accessor :id
   attr_accessor :name, :age
 
-  def initialize(age, name = 'Unknown', parent_permissions: true)
+  def initialize(age, name = 'Unknown', parent_permissions: false)
     @name = name
     @age = age
     @parent_permissions = parent_permissions
@@ -12,7 +12,7 @@ class Person
   end
 
   def can_use_services?
-    is_of_age? || @parent_permissions
+    of_age? || @parent_permissions
   end
 
   private
@@ -21,4 +21,3 @@ class Person
     @age >= 18
   end
 end
-
