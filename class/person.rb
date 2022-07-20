@@ -1,6 +1,9 @@
 require 'securerandom'
+require '../nameable'
+require '../trimmer_decorator'
+require '../capitalize_decorator'
 
-class Person
+class Person < Nameable
   attr_reader :id
   attr_accessor :name, :age
 
@@ -15,9 +18,20 @@ class Person
     of_age? || @parent_permissions
   end
 
+  def correct_name
+    @name
+  end
+
   private
 
   def of_age?
     @age >= 18
   end
 end
+
+p person = Person.new(22, 'maximilianus')
+p person.correct_name
+p capitalizedPerson = CapitalizeDecorator.new(person)
+p capitalizedPerson.correct_name
+p capitalizedTrimmedPerson = TrimmerDecorator.new(capitalizedPerson)
+p capitalizedTrimmedPerson.correct_name
