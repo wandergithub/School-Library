@@ -14,6 +14,13 @@ def display_options
   print "Option:"
 end
 
+def list_books(app)
+  app.books.each do
+    |book|
+    puts "Title: #{book.title},  Author: #{book.author}"
+  end
+end
+
 def create_person(app)
   print 'Do you want to create a student(1) or a teacher(2)? [Input the number]:  '
   type = gets.chomp
@@ -51,6 +58,7 @@ def main
     selected = gets.chomp
     case selected
     when "1"
+      list_books(app)
     when "2"
     when "3"
       create_person(app)
