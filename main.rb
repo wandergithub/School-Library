@@ -15,11 +15,11 @@ def display_options
 end
 
 def create_person(app)
-  print 'Do you want to create a student(1) or a teacher(2)? [Input the number]:'
+  print 'Do you want to create a student(1) or a teacher(2)? [Input the number]:  '
   type = gets.chomp
-  print "Age:"
+  print "Age:  "
   age = gets.chomp
-  print "name:"
+  print "name:  "
   name = gets.chomp
   if type == '1'
     print "Has pararent permission? [y/n]"
@@ -27,11 +27,20 @@ def create_person(app)
     parent_permission = (parent_permission.downcase == 'y') ? true : false
     app.create_person(type, age, name, parent_permissions: parent_permission)
   elsif type == '2'
-    print "Specialization: "
+    print "Specialization:  "
     specialization = gets.chomp
     app.create_person(type, age, name, true, specialization)
   end
   puts 'Person created successfully!'
+end
+
+def create_book(app)
+  print "Title:  "
+  title = gets.chomp
+  print "Author:  "
+  author = gets.chomp
+  app.create_book(title, author)
+  puts 'Book created successfully'
 end
 
 def main
@@ -46,6 +55,7 @@ def main
     when "3"
       create_person(app)
     when "4"
+      create_book(app)
     when "5"
     when "6"
     when "7"
