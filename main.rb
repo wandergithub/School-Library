@@ -81,7 +81,20 @@ def create_rental(app)
   puts 'Rental created successfully'
 end
 
-def list_rentals(app) 
+def list_rentals(app)
+  print 'ID of person:  '
+  desired_id = gets.chomp
+  puts 'Rentals:'
+  app.people.each do
+    |person|
+    if person.id == desired_id.to_i
+      person.rental.each do
+        |rental|
+        puts "Date:  #{rental.date}, Book:  #{rental.book.title} by #{rental.person.name}"
+      end
+    end
+  end
+end
 
 def main
   app = App.new
@@ -103,6 +116,7 @@ def main
     when "6"
       list_rentals(app)
     when "7"
+      puts "Thank you for using the app!"
       break
     else
       puts "\nUnvalid option, please write a number inside the available options\n"

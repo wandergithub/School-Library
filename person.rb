@@ -1,4 +1,3 @@
-require 'securerandom'
 require_relative 'nameable'
 require_relative 'trimmer_decorator'
 require_relative 'capitalize_decorator'
@@ -12,7 +11,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permissions = parent_permissions
-    @id = SecureRandom.uuid
+    @id = rand(500)
     @rental = []
   end
 
