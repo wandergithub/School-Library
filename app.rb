@@ -1,6 +1,7 @@
 require_relative 'teacher'
 require_relative 'student'
 require_relative 'book'
+require_relative 'rental'
 
 class App
   attr_accessor :books, :people
@@ -20,5 +21,9 @@ class App
 
   def create_book(title, author)
     @books << Book.new(title, author)
+  end
+
+  def create_rental(date, book, person)
+    Rental.new(date, book, person)
   end
 end

@@ -57,6 +57,32 @@ def create_book(app)
   puts 'Book created successfully'
 end
 
+def create_rental(app)
+  puts 'Select a book from the following list by number:'
+  app.books.each do
+    |book|
+    puts "#{app.books.index(book)}) Title: #{book.title}, Author: #{book.author}"
+  end
+  book_index = gets.chomp
+  book_index = book_index.to_i
+
+  puts "\nSelect a person from the following list by number (not id)"
+  app.people.each do
+    |person|
+    puts "#{app.people.index(person)})  [#{person.class}]  Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+  end
+  person_index = gets.chomp
+  person_index = person_index.to_i
+
+  print "\nDate:  "
+  date = gets.chomp
+
+  app.create_rental(date, app.books[book_index], app.people[person_index])
+  puts 'Rental created successfully'
+end
+
+def list_rentals(app) 
+
 def main
   app = App.new
   puts "\n\nWelcome to School Library App!"
@@ -73,7 +99,9 @@ def main
     when "4"
       create_book(app)
     when "5"
+      create_rental(app)
     when "6"
+      list_rentals(app)
     when "7"
       break
     else
