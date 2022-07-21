@@ -3,17 +3,18 @@ require_relative 'student'
 require_relative 'book'
 
 class App
-  attr_accessor :books, :persons
+  attr_accessor :books, :people
 
   def initialize
     @books = []
+    @people = []
   end
-  
+
   def create_person(type, age, name, parent_permissions = true, specialization= "default")
     if type == '1'
-      @persons << Student.new(age, name, parent_permissions)
+      @people << Student.new(age, name, parent_permissions)
     elsif type == '2'
-      @persons << Teacher.new(age, specialization , name, parent_permissions)
+      @people << Teacher.new(age, specialization , name, parent_permissions)
     end
   end
 

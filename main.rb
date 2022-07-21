@@ -21,6 +21,13 @@ def list_books(app)
   end
 end
 
+def list_people(app)
+  app.people.each do
+    |person|
+    puts "[#{person.class}]  Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+  end
+end
+
 def create_person(app)
   print 'Do you want to create a student(1) or a teacher(2)? [Input the number]:  '
   type = gets.chomp
@@ -60,6 +67,7 @@ def main
     when "1"
       list_books(app)
     when "2"
+      list_people(app)
     when "3"
       create_person(app)
     when "4"
