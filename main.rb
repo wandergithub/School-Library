@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require_relative 'app'
+require 'pry'
 
 def display_options
   main_options = "\n\nPlease choose an option by entering a number:
@@ -34,12 +35,12 @@ def create_person(app)
   print 'name:  '
   name = gets.chomp
   case type
-  when '1'
-    print 'Has pararent permission? [y/n]'
+  when 1
+    print 'Has pararent permission? [y/n]:  '
     parent_permission = gets.chomp
     parent_permission = (parent_permission.downcase == 'y')
     app.create_person(type, age, name, parent_permissions: parent_permission)
-  when '2'
+  when 2
     print 'Specialization:  '
     specialization = gets.chomp
     app.create_person(type, age, name, true, specialization)
