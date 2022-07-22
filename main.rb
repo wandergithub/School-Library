@@ -123,4 +123,4 @@ def main
   user_interaction(app)
 end
 
-main()
+main
