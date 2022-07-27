@@ -19,13 +19,13 @@ class App
   end
 
   def load_items(json, &block)
-    if json != ''
-      # binding.pry
-      arr = JSON.parse(json, create_additions: true)
-      arr.each &block
-    end
+    return unless json != ''
+
+    # binding.pry
+    arr = JSON.parse(json, create_additions: true)
+    arr.each(&block)
   end
-  
+
   def load_files
     books_file = init_file('books.json')
     rental_file = init_file('rentals.json')
