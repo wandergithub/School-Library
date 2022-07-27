@@ -16,17 +16,16 @@ class App
 
   def init_data(file)
     if File.exists?(file)
-      file = File.open(file, 'w+')
+      file = File.open(file)
     else
       file = File.new(file, 'w+')
     end
-    file
+    p file
   end
   def load_files
     books_file = init_data('books.json')
     rental_file = init_data('rentals.json')
     people_file = init_data('people.json')
-    rentals = JSON.parse(rental_file.read, create_additions: true)
     json = books_file.read
     # Load books
     if json != ''
@@ -41,7 +40,9 @@ class App
       arr.each { |people_json| @people << JSON.parse(people_json, create_additions: true) }
     end
     # Load rentals
-    if rentals != ''
+    json = rental_file.read
+    if json != ''
+      rentals = JSON.parse(json, create_additions: true)
       (0...rentals.length).each do |i|
         rental = JSON.parse(rentals[i], create_additions: true)
         @books.each { |book| book.rental << rental[0] if rental[0].book.title == book.title }
