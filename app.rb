@@ -14,9 +14,18 @@ class App
     load_files
   end
 
+  def init_data(file)
+    if File.exists?(file)
+      file = File.open(file, 'w+')
+    else
+      file = File.new(file, 'w+')
+    end
+    file
+  end
   def load_files
-    books_file = File.open('books.json')
-    rental_file = File.open('rentals.json')
+    books_file = init_data('books.json')
+    rental_file = init_data('rentals.json')
+    people_file = init_data('people.json')
     rentals = JSON.parse(rental_file.read, create_additions: true)
     json = books_file.read
     # Load books
@@ -26,7 +35,6 @@ class App
     end
     books_file.close
     # Load people
-    people_file = File.open('people.json')
     json = people_file.read
     if json != ''
       arr = JSON.parse(json, create_additions: true)
