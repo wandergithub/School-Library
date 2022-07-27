@@ -29,10 +29,11 @@ class Person < Nameable
 
   def to_json(*args)
     {
-      JSON.create_id  => self.class.name,
-      'a'             => [ name, age ]
+      JSON.create_id => self.class.name,
+      'a' => [name, age]
     }.to_json(*args)
   end
+
   # Deserialize JSON string by constructing new Foo object with arguments.
   def self.json_create(object)
     new(*object['a'])
