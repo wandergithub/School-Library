@@ -3,7 +3,6 @@ require_relative 'teacher'
 require_relative 'student'
 require_relative 'book'
 require_relative 'rental'
-require 'pry'
 
 class App
   attr_accessor :books, :people
@@ -22,12 +21,24 @@ class App
       arr.each { |json|  @books << JSON.parse(json, create_additions: true) }
     end
     books_file.close
+
+    people_file = File.open('people.json')
+    json = people_file.read
+    if json != ""
+      arr = JSON.parse(json, create_additions: true)
+      arr.each { |json|  @people << JSON.parse(json, create_additions: true) }
+    end
+    people_file.close
   end
 
   def save_data
     arr = []
     @books.each { |book| arr << JSON.generate(book) }
     File.write('books.json',arr)
+
+    arr = []
+    @people.each { |person| arr << JSON.generate(person)}
+    File.write('people.json',arr)
   end
 
   def create_person(type, age, name, parent_permissions = true, specialization = 'default')
