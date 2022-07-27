@@ -3,6 +3,7 @@ require_relative 'teacher'
 require_relative 'student'
 require_relative 'book'
 require_relative 'rental'
+require 'pry'
 
 class App
   attr_accessor :books, :people
@@ -15,20 +16,36 @@ class App
   
   def load_files
     books_file = File.open('books.json')
+    rental_file = File.open('rentals.json')
+    rentals = JSON.parse(rental_file.read, create_additions: true)
     json = books_file.read
+    # Load books
     if json != ""
       arr = JSON.parse(json, create_additions: true)
       arr.each { |json|  @books << JSON.parse(json, create_additions: true) }
     end
     books_file.close
-
+    # Load people
     people_file = File.open('people.json')
     json = people_file.read
     if json != ""
       arr = JSON.parse(json, create_additions: true)
       arr.each { |json|  @people << JSON.parse(json, create_additions: true) }
     end
+    # Load rentals
+    if rentals != ""
+      for i in 0...rentals.length
+        rental = JSON.parse(rentals[i], create_additions: true)
+        @books.each { |book| book.rental << rental[0] if rental[0].book.title == book.title }
+      end
+      for i in 0...rentals.length
+        rental = JSON.parse(rentals[i], create_additions: true)
+        @people.each { |person| person.rental << rental[0] if rental[0].person.name == person.name }
+      end
+    end
+    # binding.pry
     people_file.close
+    rental_file.close
   end
 
   def save_data
@@ -39,6 +56,10 @@ class App
     arr = []
     @people.each { |person| arr << JSON.generate(person)}
     File.write('people.json',arr)
+    
+    rentals = []
+    @books.each { |book| rentals << JSON.generate(book.rental) unless book.rental == []}
+    File.write('rentals.json', rentals)
   end
 
   def create_person(type, age, name, parent_permissions = true, specialization = 'default')
