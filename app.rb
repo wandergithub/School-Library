@@ -14,31 +14,28 @@ class App
     load_files
   end
 
-  def init_data(file)
-    if File.exists?(file)
-      file = File.open(file)
-    else
-      file = File.new(file, 'w+')
-    end
-    p file
+  def init_file(file)
+    File.exist?(file) ? File.open(file) : File.new(file, 'w+')
   end
-  def load_files
-    books_file = init_data('books.json')
-    rental_file = init_data('rentals.json')
-    people_file = init_data('people.json')
-    json = books_file.read
-    # Load books
+
+  def load_items(json, &block)
     if json != ''
+      # binding.pry
       arr = JSON.parse(json, create_additions: true)
-      arr.each { |books_json| @books << JSON.parse(books_json, create_additions: true) }
+      arr.each &block
     end
-    books_file.close
+  end
+  
+  def load_files
+    books_file = init_file('books.json')
+    rental_file = init_file('rentals.json')
+    people_file = init_file('people.json')
+    # Load books
+    json = books_file.read
+    load_items(json) { |books_json| @books << JSON.parse(books_json, create_additions: true) }
     # Load people
     json = people_file.read
-    if json != ''
-      arr = JSON.parse(json, create_additions: true)
-      arr.each { |people_json| @people << JSON.parse(people_json, create_additions: true) }
-    end
+    load_items(json) { |people_json| @people << JSON.parse(people_json, create_additions: true) }
     # Load rentals
     json = rental_file.read
     if json != ''
@@ -49,7 +46,8 @@ class App
         @people.each { |person| person.rental << rental[0] if rental[0].person.name == person.name }
       end
     end
-    # binding.pry
+    # Close All files
+    books_file.close
     people_file.close
     rental_file.close
   end
