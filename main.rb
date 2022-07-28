@@ -109,6 +109,7 @@ def user_interaction(app)
     when '6'
       list_rentals(app)
     when '7'
+      app.save_data
       puts 'Thank you for using the app!'
       break
     else
